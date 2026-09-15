@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Swim Monitor</title><link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header><h1>Swim Monitor</h1><p>Monitorização simples da carga, recuperação, composição corporal e testes físicos.</p></header>
+<nav>
+<button data-view="dashboard">Dashboard</button><button data-view="athletes">Atletas</button><button data-view="daily">Registo diário</button><button data-view="body">Composição corporal</button><button data-view="tests">Testes físicos</button>
+</nav>
+<main>
+<section id="dashboard" class="view"><div class="toolbar"><label>Atleta <select id="dashAthlete"></select></label></div><div id="dashEmpty" class="empty">Adiciona um atleta para começar.</div><div id="charts" class="grid"></div></section>
+<section id="athletes" class="view hidden"><h2>Atletas</h2><form id="athleteForm" class="card formgrid"><input id="athleteName" placeholder="Nome" required><select id="athleteSex" required><option value="">Sexo</option><option value="0">Masculino</option><option value="1">Feminino</option></select><button>Adicionar atleta</button></form><div class="card"><table><thead><tr><th>Nome</th><th>Sexo</th><th></th></tr></thead><tbody id="athleteRows"></tbody></table></div></section>
+<section id="daily" class="view hidden"><h2>Registo diário</h2><form id="dailyForm" class="card formgrid"><select id="dailyAthlete" required></select><input id="dailyDate" type="date" required><input id="pseAM" type="number" min="0" max="10" step="0.1" placeholder="PSE AM (0–10)"><input id="psePM" type="number" min="0" max="10" step="0.1" placeholder="PSE PM (0–10)"><input id="wakeHR" type="number" min="20" max="250" placeholder="FC ao acordar (bpm)"><input id="sleep" type="number" min="0" max="10" step="0.1" placeholder="Qualidade do sono (0–10)"><input id="dailyNotes" placeholder="Notas (opcional)"><button>Guardar registo</button></form><div class="card"><table><thead><tr><th>Data</th><th>Atleta</th><th>PSE AM</th><th>PSE PM</th><th>FC</th><th>Sono</th><th></th></tr></thead><tbody id="dailyRows"></tbody></table></div></section>
+<section id="body" class="view hidden"><h2>Composição corporal</h2><p class="hint">Massa gorda: Evans (2005), usando o sexo definido no atleta e o somatório das 7 pregas.</p><form id="bodyForm" class="card formgrid"><select id="bodyAthlete" required></select><input id="bodyDate" type="date" required><input id="mass" type="number" step="0.01" placeholder="Massa corporal (kg)"><input id="height" type="number" step="0.1" placeholder="Estatura (cm)"><input id="s1" type="number" step="0.1" placeholder="Prega 1 (mm)"><input id="s2" type="number" step="0.1" placeholder="Prega 2 (mm)"><input id="s3" type="number" step="0.1" placeholder="Prega 3 (mm)"><input id="s4" type="number" step="0.1" placeholder="Prega 4 (mm)"><input id="s5" type="number" step="0.1" placeholder="Prega 5 (mm)"><input id="s6" type="number" step="0.1" placeholder="Prega 6 (mm)"><input id="s7" type="number" step="0.1" placeholder="Prega 7 (mm)"><button>Guardar avaliação</button></form><div class="card"><table><thead><tr><th>Data</th><th>Atleta</th><th>Massa</th><th>Estatura</th><th>Σ7 pregas</th><th>% MG</th><th></th></tr></thead><tbody id="bodyRows"></tbody></table></div></section>
+<section id="tests" class="view hidden"><h2>Testes físicos</h2><p class="hint">Regista as duas tentativas de CMJ e de impulsão horizontal por atleta e data.</p><form id="testForm" class="card formgrid"><select id="testAthlete" required></select><input id="testDate" type="date" required><input id="cmj1" type="number" step="0.1" placeholder="CMJ tentativa 1 (cm)"><input id="cmj2" type="number" step="0.1" placeholder="CMJ tentativa 2 (cm)"><input id="broad1" type="number" step="0.1" placeholder="Impulsão horizontal 1 (cm)"><input id="broad2" type="number" step="0.1" placeholder="Impulsão horizontal 2 (cm)"><button>Guardar testes</button></form><div class="card"><table><thead><tr><th>Data</th><th>Atleta</th><th>CMJ 1</th><th>CMJ 2</th><th>IH 1</th><th>IH 2</th><th></th></tr></thead><tbody id="testRows"></tbody></table></div></section>
+</main>
+<script src="app.js"></script>
+</body></html>
